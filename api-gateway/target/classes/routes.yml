@@ -1,0 +1,7 @@
+cloud:
+  gateway:
+    routes:
+      - id: dummy-route
+        uri: http://httpbin.org
+        predicates:
+        - Path=/test/**

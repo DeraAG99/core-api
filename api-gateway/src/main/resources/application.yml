@@ -1,0 +1,35 @@
+debug: true
+
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  main:
+    web-application-type: reactive
+  r2dbc:
+    url: r2dbc:postgresql://10.253.41.27:5432/api_gateway
+    username: postgres
+    password: password
+
+  sql:
+    init:
+      mode: never
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  config:
+    import: optional:classpath:routes.yml
+
+
+logging:
+  level:
+    io.r2dbc.postgresql.QUERY: DEBUG
+    io.r2dbc.postgresql.PARAM: DEBUG
+    org.springframework: DEBUG
+    com.api.gateway: TRACE
+  file:
+    name: logs/api-gateway.log
